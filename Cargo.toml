@@ -1,0 +1,23 @@
+[package]
+name = "sylvan-sys"
+version = "0.1.0"
+edition = "2018"
+authors = ["Samuel Pastva <sam.pastva@gmail.com>"]
+build = "build.rs"
+description = "Bindings for the Sylvan parallel decision diagrams library."
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+cmake = "0.1.45"
+
+[features]
+default = ["build_sylvan"]
+# When disabled, the build script will not attempt to build Sylvan and will just silently continue.
+# This is necessary for building documentation on docs.rs without access to the internet. For other commands
+# (aside from `cargo doc`), this will fail to produce a binary during linking.
+build_sylvan = []
+
+[package.metadata.docs.rs]
+no-default-features = true
