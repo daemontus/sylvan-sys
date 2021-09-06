@@ -1,11 +1,11 @@
 extern crate cmake;
 
+use cmake::Config;
 use std::env;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use MD5Status::{Mismatch, Unknown};
-use cmake::Config;
 
 const PACKAGE_URL: &str = "https://github.com/trolando/sylvan/archive/refs/tags/v1.6.1.tar.gz";
 const PACKAGE_MD5: &str = "b6fbb2a782ba38cff44152c7478665ca";
