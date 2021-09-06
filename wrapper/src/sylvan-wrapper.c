@@ -531,8 +531,6 @@ long double Sylvan_lddmc_satcount(MDD mdd) {
     return lddmc_satcount(mdd);
 }
 
-// void (*lddmc_enum_cb)(uint32_t*, size_t, void*)
-// MDD (*lddmc_collect_cb)(uint32_t*, size_t, void*)
 void Sylvan_lddmc_sat_all_par(MDD mdd, lddmc_enum_cb cb, void *context) {
     lddmc_sat_all_par(mdd, cb, context);
 }
@@ -561,9 +559,6 @@ MDD Sylvan_lddmc_pick_cube(MDD mdd) {
     return lddmc_pick_cube(mdd);
 }
 
-// int (*lddmc_visit_pre_cb)(MDD, void* context)
-// int (*lddmc_visit_post_cb)(MDD, void* context)
-// int (*lddmc_visit_init_context_cb)(void* context, void* parent, int is_down)
 void Sylvan_lddmc_visit_par(MDD mdd, lddmc_visit_callbacks_t *cbs, size_t ctx_size, void *context) {
     lddmc_visit_par(mdd, cbs, ctx_size, context);
 }
@@ -580,7 +575,6 @@ void Sylvan_lddmc_nodecount_levels(MDD mdd, size_t *variables) {
     lddmc_nodecount_levels(mdd, variables);
 }
 
-// callback type: MDD (*lddmc_compose_cb)(MDD, void*)
 MDD Sylvan_lddmc_compose(MDD mdd, lddmc_compose_cb cb, void *context, int depth) {
     return lddmc_compose(mdd, cb, context, depth);
 }
@@ -635,4 +629,744 @@ void Sylvan_lddmc_refs_spawn(Task *t) {
 
 MDD Sylvan_lddmc_refs_sync(MDD dd) {
     lddmc_refs_sync(dd);
+}
+
+/*
+    sylvan_mtbdd.h wrapper:
+ */
+
+void Sylvan_init_mtbdd(void) {
+    sylvan_init_mtbdd();
+}
+
+void Sylvan_init_bdd() {
+    sylvan_init_bdd();
+}
+
+MTBDD Sylvan_mtbdd_makeleaf(uint32_t type, uint64_t value) {
+    return mtbdd_makeleaf(type, value);
+}
+
+MTBDD Sylvan_mtbdd_makenode(uint32_t var, MTBDD low, MTBDD high) {
+    return mtbdd_makenode(var, low, high);
+}
+
+MTBDD Sylvan_makenode(uint32_t var, MTBDD low, MTBDD high) {
+    return sylvan_makenode(var, low, high);
+}
+
+int Sylvan_mtbdd_isleaf(MTBDD mtbdd) {
+    return mtbdd_isleaf(mtbdd);
+}
+
+int Sylvan_mtbdd_isnode(MTBDD mtbdd) {
+    return mtbdd_isnode(mtbdd);
+}
+
+uint32_t Sylvan_mtbdd_gettype(MTBDD leaf) {
+    return mtbdd_gettype(leaf);
+}
+
+uint64_t Sylvan_mtbdd_getvalue(MTBDD leaf) {
+    return mtbdd_getvalue(leaf);
+}
+
+uint32_t Sylvan_mtbdd_getvar(MTBDD node) {
+    return mtbdd_getvar(node);
+}
+
+uint32_t Sylvan_var(MTBDD node) {
+    return sylvan_var(node);
+}
+
+MTBDD Sylvan_mtbdd_getlow(MTBDD node) {
+    return mtbdd_getlow(node);
+}
+
+MTBDD Sylvan_low(MTBDD node) {
+    return sylvan_low(node);
+}
+
+MTBDD Sylvan_mtbdd_gethigh(MTBDD node) {
+    return mtbdd_gethigh(node);
+}
+
+MTBDD Sylvan_high(MTBDD node) {
+    return sylvan_high(node);
+}
+
+int Sylvan_mtbdd_hascomp(MTBDD dd) {
+    return mtbdd_hascomp(dd);
+}
+
+MTBDD Sylvan_mtbdd_comp(MTBDD dd) {
+    return mtbdd_comp(dd);
+}
+
+MTBDD Sylvan_mtbdd_not(MTBDD dd) {
+    return mtbdd_not(dd);
+}
+
+MTBDD Sylvan_mtbdd_int64(int64_t value) {
+    return mtbdd_int64(value);
+}
+
+MTBDD Sylvan_mtbdd_double(double value) {
+    return mtbdd_double(value);
+}
+
+MTBDD Sylvan_mtbdd_fraction(int64_t numer, uint64_t denom) {
+    return mtbdd_fraction(numer, denom);
+}
+
+int64_t Sylvan_mtbdd_getint64(MTBDD terminal) {
+    return mtbdd_getint64(terminal);
+}
+
+double Sylvan_mtbdd_getdouble(MTBDD terminal) {
+    return mtbdd_getdouble(terminal);
+}
+
+int32_t Sylvan_mtbdd_getnumer(MTBDD terminal) {
+    return mtbdd_getnumer(terminal);
+}
+
+uint32_t Sylvan_mtbdd_getdenom(MTBDD terminal) {
+    return mtbdd_getdenom(terminal);
+}
+
+MTBDD Sylvan_mtbdd_ithvar(uint32_t var) {
+    return mtbdd_ithvar(var);
+}
+
+MTBDD Sylvan_ithvar(uint32_t var) {
+    return sylvan_ithvar(var);
+}
+
+MTBDD Sylvan_mtbdd_set_empty() {
+    return mtbdd_set_empty();
+}
+
+MTBDD Sylvan_set_empty() {
+    return sylvan_set_empty();
+}
+
+int Sylvan_mtbdd_set_isempty(MTBDD set) {
+    return mtbdd_set_isempty(set);
+}
+
+int Sylvan_set_isempty(MTBDD set) {
+    return sylvan_test_isbdd(set);
+}
+
+uint32_t Sylvan_mtbdd_set_first(MTBDD set) {
+    return mtbdd_set_first(set);
+}
+
+uint32_t Sylvan_set_first(MTBDD set) {
+    return sylvan_set_first(set);
+}
+
+MTBDD Sylvan_mtbdd_set_next(MTBDD set) {
+    return mtbdd_set_next(set);
+}
+
+MTBDD Sylvan_set_next(MTBDD set) {
+    return sylvan_set_next(set);
+}
+
+MTBDD Sylvan_mtbdd_set_from_array(uint32_t* arr, size_t length) {
+    return mtbdd_set_from_array(arr, length);
+}
+
+MTBDD Sylvan_mtbdd_fromarray(uint32_t* arr, size_t length) {
+    return mtbdd_fromarray(arr, length);
+}
+
+MTBDD Sylvan_mtbdd_set_fromarray(uint32_t* arr, size_t length) {
+    return mtbdd_set_fromarray(arr, length);
+}
+
+MTBDD Sylvan_set_fromarray(uint32_t* arr, size_t length) {
+    return sylvan_set_fromarray(arr, length);
+}
+
+void Sylvan_mtbdd_set_to_array(MTBDD set, uint32_t *arr) {
+    mtbdd_set_to_array(set, arr);
+}
+
+void Sylvan_mtbdd_set_toarray(MTBDD set, uint32_t *arr) {
+    mtbdd_set_toarray(set, arr);
+}
+
+void Sylvan_set_toarray(MTBDD set, uint32_t *arr) {
+    sylvan_set_toarray(set, arr);
+}
+
+size_t Sylvan_mtbdd_set_count(MTBDD set) {
+    return mtbdd_set_count(set);
+}
+
+size_t Sylvan_set_count(MTBDD set) {
+    return sylvan_set_count(set);
+}
+
+MTBDD Sylvan_mtbdd_set_union(MTBDD set1, MTBDD set2) {
+    return mtbdd_set_union(set1, set2);
+}
+
+MTBDD Sylvan_mtbdd_set_addall(MTBDD set1, MTBDD set2) {
+    return mtbdd_set_addall(set1, set2);
+}
+
+MTBDD Sylvan_set_addall(MTBDD set1, MTBDD set2) {
+    return sylvan_set_addall(set1, set2);
+}
+
+MTBDD Sylvan_mtbdd_set_minus(MTBDD set1, MTBDD set2) {
+    return mtbdd_set_minus(set1, set2);
+}
+
+MTBDD Sylvan_mtbdd_set_removeall(MTBDD set1, MTBDD set2) {
+    return mtbdd_set_removeall(set1, set2);
+}
+
+MTBDD Sylvan_set_removeall(MTBDD set1, MTBDD set2) {
+    return sylvan_set_removeall(set1, set2);
+}
+
+int Sylvan_mtbdd_set_contains(MTBDD set, uint32_t var) {
+    return mtbdd_set_contains(set, var);
+}
+
+int Sylvan_mtbdd_set_in(MTBDD set, uint32_t var) {
+    return mtbdd_set_in(set, var);
+}
+
+int Sylvan_set_in(MTBDD set, uint32_t var) {
+    return sylvan_set_in(set, var);
+}
+
+MTBDD Sylvan_mtbdd_set_add(MTBDD set, uint32_t var) {
+    return mtbdd_set_addall(set, var);
+}
+
+MTBDD Sylvan_set_add(MTBDD set, uint32_t var) {
+    return sylvan_set_add(set, var);
+}
+
+MTBDD Sylvan_mtbdd_set_remove(MTBDD set, uint32_t var) {
+    return mtbdd_set_remove(set, var);
+}
+
+MTBDD Sylvan_set_remove(MTBDD set, uint32_t var) {
+    return sylvan_set_remove(set, var);
+}
+
+void Sylvan_mtbdd_test_isset(MTBDD set) {
+    mtbdd_test_isset(set);
+}
+
+void Sylvan_test_isset(MTBDD set) {
+    sylvan_test_isbdd(set);
+}
+
+MTBDD Sylvan_mtbdd_cube(MTBDD variables, uint8_t *cube, MTBDD terminal) {
+    return mtbdd_cube(variables, cube, terminal);
+}
+
+BDD Sylvan_mtbdd_union_cube(MTBDD mtbdd, MTBDD variables, uint8_t *cube, MTBDD terminal) {
+    return mtbdd_union_cube(mtbdd, variables, cube, terminal);
+}
+
+double Sylvan_mtbdd_satcount(MTBDD dd, size_t nvars) {
+    return mtbdd_satcount(dd, nvars);
+}
+
+size_t Sylvan_mtbdd_leafcount_more(const MTBDD *mtbdds, size_t count) {
+    return mtbdd_leafcount_more(mtbdds, count);
+}
+
+size_t Sylvan_mtbdd_leafcount(MTBDD dd) {
+    return mtbdd_leafcount(dd);
+}
+
+size_t Sylvan_mtbdd_nodecount_more(const MTBDD *mtbdds, size_t count) {
+    return mtbdd_nodecount_more(mtbdds, count);
+}
+
+size_t Sylvan_mtbdd_nodecount(const MTBDD dd) {
+    return mtbdd_nodecount(dd);
+}
+
+size_t Sylvan_nodecount(const MTBDD dd) {
+    return sylvan_nodecount(dd);
+}
+
+MTBDD Sylvan_mtbdd_apply(MTBDD a, MTBDD b, mtbdd_apply_op op) {
+    return mtbdd_apply(a, b, op);
+}
+
+MTBDD Sylvan_mtbdd_applyp(MTBDD a, MTBDD b, size_t p, mtbdd_applyp_op op, uint64_t opid) {
+    return mtbdd_applyp(a, b, p, op, opid);
+}
+
+MTBDD Sylvan_mtbdd_uapply(MTBDD dd, mtbdd_uapply_op op, size_t param) {
+    return mtbdd_uapply(dd, op, param);
+}
+
+MTBDD Sylvan_mtbdd_abstract(MTBDD a, MTBDD v, mtbdd_abstract_op op) {
+    return mtbdd_abstract(a, v, op);
+}
+
+MTBDD Sylvan_mtbdd_negate(MTBDD a) {
+    return mtbdd_negate(a);
+}
+
+MTBDD Sylvan_mtbdd_cmpl(MTBDD a) {
+    return mtbdd_cmpl(a);
+}
+
+MTBDD Sylvan_mtbdd_plus(MTBDD a, MTBDD b) {
+    return mtbdd_plus(a, b);
+}
+
+MTBDD Sylvan_mtbdd_minus(MTBDD a, MTBDD b) {
+    return mtbdd_minus(a, b);
+}
+
+MTBDD Sylvan_mtbdd_times(MTBDD a, MTBDD b) {
+    return mtbdd_times(a, b);
+}
+
+MTBDD Sylvan_mtbdd_min(MTBDD a, MTBDD b) {
+    return mtbdd_min(a, b);
+}
+
+MTBDD Sylvan_mtbdd_max(MTBDD a, MTBDD b) {
+    return mtbdd_max(a, b);
+}
+
+MTBDD Sylvan_mtbdd_abstract_plus(MTBDD dd, MTBDD v) {
+    return mtbdd_abstract_plus(dd, v);
+}
+
+MTBDD Sylvan_mtbdd_abstract_times(MTBDD dd, MTBDD v) {
+    return mtbdd_abstract_times(dd, v);
+}
+
+MTBDD Sylvan_mtbdd_abstract_min(MTBDD dd, MTBDD v) {
+    return mtbdd_abstract_min(dd, v);
+}
+
+MTBDD Sylvan_mtbdd_abstract_max(MTBDD dd, MTBDD v) {
+    return mtbdd_abstract_max(dd, v);
+}
+
+MTBDD Sylvan_mtbdd_ite(MTBDD f, MTBDD g, MTBDD h) {
+    return mtbdd_ite(f, g, h);
+}
+
+MTBDD Sylvan_mtbdd_and_abstract_plus(MTBDD a, MTBDD b, MTBDD vars) {
+    return mtbdd_and_abstract_plus(a, b, vars);
+}
+
+MTBDD Sylvan_mtbdd_and_exists(MTBDD a, MTBDD b, MTBDD vars) {
+    return mtbdd_and_exists(a, b, vars);
+}
+
+MTBDD Sylvan_mtbdd_and_abstract_max(MTBDD a, MTBDD b, MTBDD vars) {
+    return mtbdd_and_abstract_max(a, b, vars);
+}
+
+MTBDD Sylvan_mtbdd_threshold_double(MTBDD dd, double value) {
+    return mtbdd_threshold_double(dd, value);
+}
+
+MTBDD Sylvan_mtbdd_strict_threshold_double(MTBDD dd, double value) {
+    return mtbdd_strict_threshold_double(dd, value);
+}
+
+MTBDD Sylvan_mtbdd_equal_norm_d(MTBDD a, MTBDD b, double epsilon) {
+    return mtbdd_equal_norm_d(a, b, epsilon);
+}
+
+MTBDD Sylvan_mtbdd_equal_norm_rel_d(MTBDD a, MTBDD b, double epsilon) {
+    return mtbdd_equal_norm_rel_d(a, b, epsilon);
+}
+
+MTBDD Sylvan_mtbdd_leq(MTBDD a, MTBDD b) {
+    return mtbdd_leq(a, b);
+}
+
+MTBDD Sylvan_mtbdd_less(MTBDD a, MTBDD b) {
+    return mtbdd_less(a, b);
+}
+
+MTBDD Sylvan_mtbdd_geq(MTBDD a, MTBDD b) {
+    return mtbdd_geq(a, b);
+}
+
+MTBDD Sylvan_mtbdd_greater(MTBDD a, MTBDD b) {
+    return mtbdd_greater(a, b);
+}
+
+MTBDD Sylvan_mtbdd_support(MTBDD dd) {
+    return mtbdd_support(dd);
+}
+
+MTBDD Sylvan_support(MTBDD dd) {
+    return sylvan_support(dd);
+}
+
+MTBDD Sylvan_mtbdd_compose(MTBDD dd, MTBDDMAP map) {
+    return mtbdd_compose(dd, map);
+}
+
+MTBDD Sylvan_mtbdd_minimum(MTBDD dd) {
+    return mtbdd_minimum(dd);
+}
+
+MTBDD Sylvan_mtbdd_maximum(MTBDD dd) {
+    return mtbdd_maximum(dd);
+}
+
+MTBDD Sylvan_mtbdd_enum_first(MTBDD dd, MTBDD variables, uint8_t *arr, mtbdd_enum_filter_cb filter_cb) {
+    return mtbdd_enum_first(dd, variables, arr, filter_cb);
+}
+
+MTBDD Sylvan_mtbdd_enum_next(MTBDD dd, MTBDD variables, uint8_t *arr, mtbdd_enum_filter_cb filter_cb) {
+    return mtbdd_enum_next(dd, variables, arr, filter_cb);
+}
+
+MTBDD Sylvan_mtbdd_enum_all_first(MTBDD dd, MTBDD variables, uint8_t *arr, mtbdd_enum_filter_cb filter_cb) {
+    return mtbdd_enum_all_first(dd, variables, arr, filter_cb);
+}
+
+MTBDD Sylvan_mtbdd_enum_all_next(MTBDD dd, MTBDD variables, uint8_t *arr, mtbdd_enum_filter_cb filter_cb) {
+    return mtbdd_enum_all_next(dd, variables, arr, filter_cb);
+}
+
+void Sylvan_mtbdd_enum_par(MTBDD dd, mtbdd_enum_cb cb, void *context) {
+    mtbdd_enum_par(dd, cb, context);
+}
+
+MTBDD Sylvan_mtbdd_eval_compose(MTBDD dd, MTBDD vars, mtbdd_eval_compose_cb cb) {
+    return mtbdd_eval_compose(dd, vars, cb);
+}
+
+int Sylvan_mtbdd_test_isvalid(MTBDD mtbdd) {
+    return mtbdd_test_isvalid(mtbdd);
+}
+
+int Sylvan_test_isbdd(MTBDD mtbdd) {
+    return sylvan_test_isbdd(mtbdd);
+}
+
+void Sylvan_mtbdd_fprintdot(FILE *out, MTBDD mtbdd) {
+    mtbdd_fprintdot(out, mtbdd);
+}
+
+void Sylvan_fprintdot(FILE *out, MTBDD mtbdd) {
+    sylvan_fprintdot(out, mtbdd);
+}
+
+void Sylvan_mtbdd_printdot(MTBDD mtbdd) {
+    mtbdd_printdot(mtbdd, NULL);
+}
+
+void Sylvan_printdot(MTBDD mtbdd) {
+    sylvan_printdot(mtbdd, NULL);
+}
+
+void Sylvan_mtbdd_fprintdot_nc(FILE *out, MTBDD mtbdd) {
+    mtbdd_fprintdot_nc(out, mtbdd);
+}
+
+void Sylvan_mtbdd_printdot_nc(MTBDD mtbdd) {
+    mtbdd_printdot_nc(mtbdd, NULL);
+}
+
+void Sylvan_mtbdd_fprint_leaf(FILE *out, MTBDD leaf) {
+    mtbdd_fprint_leaf(out, leaf);
+}
+
+void Sylvan_mtbdd_print_leaf(MTBDD leaf) {
+    mtbdd_print_leaf(leaf);
+}
+
+char * Sylvan_mtbdd_leaf_to_str(MTBDD leaf, char *buf, size_t buflen) {
+    return mtbdd_leaf_to_str(leaf, buf, buflen);
+}
+
+void Sylvan_mtbdd_printsha(MTBDD dd) {
+    mtbdd_printsha(dd);
+}
+
+void Sylvan_printsha(MTBDD dd) {
+    sylvan_printsha(dd);
+}
+
+void Sylvan_mtbdd_fprintsha(FILE *f, MTBDD dd) {
+    mtbdd_fprintsha(f, dd);
+}
+
+void Sylvan_fprintsha(FILE *f, MTBDD dd) {
+    sylvan_fprintsha(f, dd);
+}
+
+void Sylvan_mtbdd_getsha(MTBDD dd, char *target) {
+    mtbdd_getsha(dd, target);
+}
+
+void Sylvan_getsha(MTBDD dd, char *target) {
+    sylvan_getsha(dd, target);
+}
+
+void Sylvan_mtbdd_visit_seq(MTBDD dd, mtbdd_visit_pre_cb pre, mtbdd_visit_post_cb post, void *context) {
+    mtbdd_visit_seq(dd, pre, post, context);
+}
+
+void Sylvan_mtbdd_visit_par(MTBDD dd, mtbdd_visit_pre_cb pre, mtbdd_visit_post_cb post, void *context) {
+    mtbdd_visit_par(dd, pre, post, context);
+}
+
+void Sylvan_mtbdd_writer_tobinary(FILE *file, MTBDD *dds, int count) {
+    mtbdd_writer_tobinary(file, dds, count);
+}
+
+void Sylvan_mtbdd_writer_totext(FILE *file, MTBDD *dds, int count) {
+    mtbdd_writer_totext(file, dds, count);
+}
+
+sylvan_skiplist_t Sylvan_mtbdd_writer_start(void) {
+    return mtbdd_writer_start();
+}
+
+void Sylvan_mtbdd_writer_add(sylvan_skiplist_t sl, MTBDD dd) {
+    mtbdd_writer_add(sl, dd);
+}
+
+void Sylvan_mtbdd_writer_writebinary(FILE *out, sylvan_skiplist_t sl) {
+    mtbdd_writer_writebinary(out, sl);
+}
+
+uint64_t Sylvan_mtbdd_writer_get(sylvan_skiplist_t sl, MTBDD dd) {
+    return mtbdd_writer_get(sl, dd);
+}
+
+void Sylvan_mtbdd_writer_end(sylvan_skiplist_t sl) {
+    mtbdd_writer_end(sl);
+}
+
+int Sylvan_mtbdd_reader_frombinary(FILE *file, MTBDD *dds, int count) {
+    return mtbdd_reader_frombinary(file, dds, count);
+}
+
+uint64_t * Sylvan_mtbdd_reader_readbinary(FILE *file) {
+    return mtbdd_reader_readbinary(file);
+}
+
+MTBDD Sylvan_mtbdd_reader_get(uint64_t* arr, uint64_t identifier) {
+    return mtbdd_reader_get(arr, identifier);
+}
+
+void Sylvan_mtbdd_reader_end(uint64_t *arr) {
+    mtbdd_reader_end(arr);
+}
+
+MTBDD Sylvan_mtbdd_map_empty() {
+    return mtbdd_map_empty();
+}
+
+MTBDD Sylvan_map_empty() {
+    return sylvan_map_empty();
+}
+
+int Sylvan_mtbdd_map_isempty(MTBDD map) {
+    return mtbdd_map_isempty(map);
+}
+
+int Sylvan_map_isempty(MTBDD map) {
+    return sylvan_map_isempty(map);
+}
+
+uint32_t Sylvan_mtbdd_map_key(MTBDD map) {
+    return mtbdd_map_key(map);
+}
+
+uint32_t Sylvan_map_key(MTBDD map) {
+    return sylvan_map_key(map);
+}
+
+MTBDD Sylvan_mtbdd_map_value(MTBDD map) {
+    return mtbdd_map_value(map);
+}
+
+MTBDD Sylvan_map_value(MTBDD map) {
+    return sylvan_map_value(map);
+}
+
+MTBDD Sylvan_mtbdd_map_next(MTBDD map) {
+    return mtbdd_map_next(map);
+}
+
+MTBDD Sylvan_map_next(MTBDD map) {
+    return sylvan_map_next(map);
+}
+
+int Sylvan_mtbdd_map_contains(MTBDDMAP map, uint32_t key) {
+    return mtbdd_map_contains(map, key);
+}
+
+int Sylvan_map_contains(MTBDDMAP map, uint32_t key) {
+    return sylvan_map_contains(map, key);
+}
+
+size_t Sylvan_mtbdd_map_count(MTBDDMAP map) {
+    return mtbdd_map_count(map);
+}
+
+size_t Sylvan_map_count(MTBDDMAP map) {
+    return sylvan_map_count(map);
+}
+
+MTBDDMAP Sylvan_mtbdd_map_add(MTBDDMAP map, uint32_t key, MTBDD value) {
+    return mtbdd_map_add(map, key, value);
+}
+
+MTBDDMAP Sylvan_map_add(MTBDDMAP map, uint32_t key, MTBDD value) {
+    return sylvan_map_add(map, key, value);
+}
+
+MTBDDMAP Sylvan_mtbdd_map_update(MTBDDMAP map1, MTBDDMAP map2) {
+    return mtbdd_map_update(map1, map2);
+}
+
+MTBDDMAP Sylvan_mtbdd_map_addall(MTBDDMAP map1, MTBDDMAP map2) {
+    return mtbdd_map_addall(map1, map2);
+}
+
+MTBDDMAP Sylvan_map_addall(MTBDDMAP map1, MTBDDMAP map2) {
+    return sylvan_map_addall(map1, map2);
+}
+
+MTBDDMAP Sylvan_mtbdd_map_remove(MTBDDMAP map, uint32_t key) {
+    return mtbdd_map_remove(map, key);
+}
+
+MTBDDMAP Sylvan_map_remove(MTBDDMAP map, uint32_t key) {
+    return sylvan_map_remove(map, key);
+}
+
+MTBDDMAP Sylvan_mtbdd_map_removeall(MTBDDMAP map, MTBDD variables) {
+    return mtbdd_map_removeall(map, variables);
+}
+
+MTBDDMAP Sylvan_map_removeall(MTBDDMAP map, MTBDD variables) {
+    return sylvan_map_removeall(map, variables);
+}
+
+void Sylvan_mtbdd_gc_mark_rec(MTBDD mtbdd) {
+    mtbdd_gc_mark_rec(mtbdd);
+}
+
+void Sylvan_gc_mark_rec(MTBDD mtbdd) {
+    sylvan_gc_mark_rec(mtbdd);
+}
+
+void Sylvan_mtbdd_protect(MTBDD* ptr) {
+    mtbdd_protect(ptr);
+}
+
+void Sylvan_protect(MTBDD* ptr) {
+    sylvan_protect(ptr);
+}
+
+void Sylvan_mtbdd_unprotect(MTBDD* ptr) {
+    mtbdd_unprotect(ptr);
+}
+
+void Sylvan_unprotect(MTBDD* ptr) {
+    sylvan_unprotect(ptr);
+}
+
+size_t Sylvan_mtbdd_count_protected(void) {
+    return mtbdd_count_protected();
+}
+
+size_t Sylvan_count_protected(void) {
+    return sylvan_count_protected();
+}
+
+MTBDD Sylvan_mtbdd_ref(MTBDD dd) {
+    return mtbdd_ref(dd);
+}
+
+MTBDD Sylvan_ref(MTBDD dd) {
+    return sylvan_ref(dd);
+}
+
+void Sylvan_mtbdd_deref(MTBDD dd) {
+    mtbdd_deref(dd);
+}
+
+void Sylvan_deref(MTBDD dd) {
+    sylvan_deref(dd);
+}
+
+size_t Sylvan_mtbdd_count_refs(void) {
+    return mtbdd_count_refs();
+}
+
+size_t Sylvan_count_refs(void) {
+    return sylvan_count_refs();
+}
+
+void Sylvan_mtbdd_refs_pushptr(const MTBDD *ptr) {
+    mtbdd_refs_pushptr(ptr);
+}
+
+void Sylvan_refs_pushptr(const MTBDD *ptr) {
+    sylvan_refs_pushptr(ptr);
+}
+
+void Sylvan_mtbdd_refs_popptr(size_t amount) {
+    mtbdd_refs_popptr(amount);
+}
+
+void Sylvan_refs_popptr(size_t amount) {
+    Sylvan_refs_popptr(amount);
+}
+
+MTBDD Sylvan_mtbdd_refs_push(MTBDD mtbdd) {
+    return mtbdd_refs_push(mtbdd);
+}
+
+MTBDD Sylvan_refs_push(MTBDD mtbdd) {
+    return sylvan_refs_push(mtbdd);
+}
+
+void Sylvan_mtbdd_refs_pop(long amount) {
+    mtbdd_refs_pop(amount);
+}
+
+void Sylvan_refs_pop(long amount) {
+    sylvan_refs_pop(amount);
+}
+
+void Sylvan_mtbdd_refs_spawn(Task *t) {
+    mtbdd_refs_spawn(t);
+}
+
+void Sylvan_refs_spawn(Task *t) {
+    sylvan_refs_spawn(t);
+}
+
+MTBDD Sylvan_mtbdd_refs_sync(MTBDD mtbdd) {
+    return mtbdd_refs_sync(mtbdd);
+}
+
+MTBDD Sylvan_refs_sync(MTBDD mtbdd) {
+    return sylvan_refs_sync(mtbdd);
 }
