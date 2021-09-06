@@ -354,3 +354,285 @@ void Sylvan_fprint(FILE *f, BDD bdd) {
 void Sylvan_print(BDD bdd) {
     sylvan_print(bdd);
 }
+
+/*
+    sylvan_ldd.h wrapper:
+ */
+
+void Sylvan_init_ldd(void) {
+    sylvan_init_ldd();
+}
+
+MDD Sylvan_lddmc_makenode(uint32_t value, MDD ifeq, MDD ifneq) {
+    return lddmc_makenode(value, ifeq, ifneq);
+}
+
+MDD Sylvan_lddmc_extendnode(MDD mdd, uint32_t value, MDD ifeq) {
+    return lddmc_extendnode(mdd, value, ifeq);
+}
+
+uint32_t Sylvan_lddmc_getvalue(MDD mdd) {
+    return lddmc_getvalue(mdd);
+}
+
+MDD Sylvan_lddmc_getdown(MDD mdd) {
+    return lddmc_getdown(mdd);
+}
+
+MDD Sylvan_lddmc_getright(MDD mdd) {
+    return lddmc_getright(mdd);
+}
+
+MDD Sylvan_lddmc_follow(MDD mdd, uint32_t value) {
+    return lddmc_follow(mdd, value);
+}
+
+MDD Sylvan_lddmc_make_copynode(MDD ifeq, MDD ifneq) {
+    return lddmc_make_copynode(ifeq, ifneq);
+}
+
+int Sylvan_lddmc_iscopy(MDD mdd) {
+    return lddmc_iscopy(mdd);
+}
+
+MDD Sylvan_lddmc_followcopy(MDD mdd) {
+    return lddmc_followcopy(mdd);
+}
+
+void Sylvan_lddmc_protect(MDD* ptr) {
+    lddmc_protect(ptr);
+}
+
+void Sylvan_lddmc_unprotect(MDD* ptr) {
+    lddmc_unprotect(ptr);
+}
+
+size_t Sylvan_lddmc_count_protected(void) {
+    return lddmc_count_protected();
+}
+
+MDD Sylvan_lddmc_ref(MDD dd) {
+    return lddmc_ref(dd);
+}
+
+void Sylvan_lddmc_deref(MDD dd) {
+    lddmc_deref(dd);
+}
+
+size_t Sylvan_lddmc_count_refs(void) {
+    return lddmc_count_refs();
+}
+
+void Sylvan_lddmc_gc_mark_rec(MDD mdd) {
+    lddmc_gc_mark_rec(mdd);
+}
+
+MDD Sylvan_lddmc_union(MDD a, MDD b) {
+    return lddmc_union(a, b);
+}
+
+MDD Sylvan_lddmc_minus(MDD a, MDD b) {
+    return lddmc_minus(a, b);
+}
+
+MDD Sylvan_lddmc_zip(MDD a, MDD b, MDD *res) {
+    return lddmc_zip(a, b, res);
+}
+
+MDD Sylvan_lddmc_intersect(MDD a, MDD b) {
+    return lddmc_intersect(a, b);
+}
+
+MDD Sylvan_lddmc_match(MDD a, MDD b, MDD proj) {
+    return lddmc_match(a, b, proj);
+}
+
+MDD Sylvan_lddmc_union_cube(MDD a, uint32_t* values, size_t count) {
+    return lddmc_union_cube(a, values, count);
+}
+
+int Sylvan_lddmc_member_cube(MDD a, uint32_t* values, size_t count) {
+    return lddmc_member_cube(a, values, count);
+}
+
+MDD Sylvan_lddmc_cube(uint32_t* values, size_t count) {
+    return lddmc_cube(values, count);
+}
+
+MDD Sylvan_lddmc_union_cube_copy(MDD a, uint32_t* values, int* copy, size_t count) {
+    return lddmc_union_cube_copy(a, values, copy, count);
+}
+
+int Sylvan_lddmc_member_cube_copy(MDD a, uint32_t* values, int* copy, size_t count) {
+    return lddmc_member_cube_copy(a, values, copy, count);
+}
+
+MDD Sylvan_lddmc_cube_copy(uint32_t* values, int* copy, size_t count) {
+    return lddmc_cube_copy(values, copy, count);
+}
+
+MDD Sylvan_lddmc_relprod(MDD a, MDD b, MDD proj) {
+    return lddmc_relprod(a, b, proj);
+}
+
+MDD Sylvan_lddmc_relprod_union(MDD a, MDD b, MDD meta, MDD un) {
+    return lddmc_relprod_union(a, b, meta, un);
+}
+
+MDD Sylvan_lddmc_relprev(MDD a, MDD rel, MDD proj, MDD uni) {
+    return lddmc_relprev(a, rel, proj, uni);
+}
+
+MDD Sylvan_lddmc_project(MDD mdd, MDD proj) {
+    return lddmc_project(mdd, proj);
+}
+
+MDD Sylvan_lddmc_project_minus(MDD mdd, MDD proj, MDD avoid) {
+    return lddmc_project_minus(mdd, proj, avoid);
+}
+
+MDD Sylvan_lddmc_join(MDD a, MDD b, MDD a_proj, MDD b_proj) {
+    return lddmc_join(a, b, a_proj, b_proj);
+}
+
+void Sylvan_lddmc_printdot(MDD mdd) {
+    lddmc_printdot(mdd);
+}
+
+void Sylvan_lddmc_fprintdot(FILE *out, MDD mdd) {
+    lddmc_fprintdot(out, mdd);
+}
+
+void Sylvan_lddmc_fprint(FILE *out, MDD mdd) {
+    lddmc_fprint(out, mdd);
+}
+
+void Sylvan_lddmc_print(MDD mdd) {
+    lddmc_print(mdd);
+}
+
+void Sylvan_lddmc_printsha(MDD mdd) {
+    lddmc_printsha(mdd);
+}
+
+void Sylvan_lddmc_fprintsha(FILE *out, MDD mdd) {
+    lddmc_fprintsha(out, mdd);
+}
+
+void Sylvan_lddmc_getsha(MDD mdd, char *target) {
+    lddmc_getsha(mdd, target);
+}
+
+lddmc_satcount_double_t Sylvan_lddmc_satcount_cached(MDD mdd) {
+    return lddmc_satcount_cached(mdd);
+}
+
+long double Sylvan_lddmc_satcount(MDD mdd) {
+    return lddmc_satcount(mdd);
+}
+
+// void (*lddmc_enum_cb)(uint32_t*, size_t, void*)
+// MDD (*lddmc_collect_cb)(uint32_t*, size_t, void*)
+void Sylvan_lddmc_sat_all_par(MDD mdd, lddmc_enum_cb cb, void *context) {
+    lddmc_sat_all_par(mdd, cb, context);
+}
+
+void Sylvan_lddmc_sat_all_nopar(MDD mdd, lddmc_enum_cb cb, void *context) {
+    lddmc_sat_all_nopar(mdd, cb, context);
+}
+
+MDD Sylvan_lddmc_collect(MDD md, lddmc_collect_cb cb, void *context) {
+    return lddmc_collect(md, cb, context);
+}
+
+void Sylvan_lddmc_match_sat_par(MDD mdd, MDD match, MDD proj, lddmc_enum_cb cb, void *context) {
+    return lddmc_match_sat_par(mdd, match, proj, cb, context);
+}
+
+int Sylvan_lddmc_sat_one(MDD mdd, uint32_t *values, size_t count) {
+    return lddmc_sat_one(mdd, values, count);
+}
+
+MDD Sylvan_lddmc_sat_one_mdd(MDD mdd) {
+    return lddmc_sat_one_mdd(mdd);
+}
+
+MDD Sylvan_lddmc_pick_cube(MDD mdd) {
+    return lddmc_pick_cube(mdd);
+}
+
+// int (*lddmc_visit_pre_cb)(MDD, void* context)
+// int (*lddmc_visit_post_cb)(MDD, void* context)
+// int (*lddmc_visit_init_context_cb)(void* context, void* parent, int is_down)
+void Sylvan_lddmc_visit_par(MDD mdd, lddmc_visit_callbacks_t *cbs, size_t ctx_size, void *context) {
+    lddmc_visit_par(mdd, cbs, ctx_size, context);
+}
+
+void Sylvan_lddmc_visit_seq(MDD mdd, lddmc_visit_callbacks_t *cbs, size_t ctx_size, void *context) {
+    lddmc_visit_seq(mdd, cbs, ctx_size, context);
+}
+
+size_t Sylvan_lddmc_nodecount(MDD mdd) {
+    return lddmc_nodecount(mdd);
+}
+
+void Sylvan_lddmc_nodecount_levels(MDD mdd, size_t *variables) {
+    lddmc_nodecount_levels(mdd, variables);
+}
+
+// callback type: MDD (*lddmc_compose_cb)(MDD, void*)
+MDD Sylvan_lddmc_compose(MDD mdd, lddmc_compose_cb cb, void *context, int depth) {
+    return lddmc_compose(mdd, cb, context, depth);
+}
+
+size_t Sylvan_lddmc_serialize_add(MDD mdd) {
+    return lddmc_serialize_add(mdd);
+}
+
+size_t Sylvan_lddmc_serialize_get(MDD mdd) {
+    return lddmc_serialize_get(mdd);
+}
+
+MDD Sylvan_lddmc_serialize_get_reversed(size_t value) {
+    return lddmc_serialize_get_reversed(value);
+}
+
+void Sylvan_lddmc_serialize_reset(void) {
+    lddmc_serialize_reset();
+}
+
+void Sylvan_lddmc_serialize_totext(FILE *out) {
+    lddmc_serialize_totext(out);
+}
+
+void Sylvan_lddmc_serialize_tofile(FILE *out) {
+    lddmc_serialize_tofile(out);
+}
+
+void Sylvan_lddmc_serialize_fromfile(FILE *in) {
+    lddmc_serialize_fromfile(in);
+}
+
+void Sylvan_lddmc_refs_pushptr(const MDD *ptr) {
+    lddmc_refs_pushptr(ptr);
+}
+
+void Sylvan_lddmc_refs_popptr(size_t amount) {
+    lddmc_refs_popptr(amount);
+}
+
+MDD Sylvan_lddmc_refs_push(MDD dd) {
+    return lddmc_refs_push(dd);
+}
+
+void Sylvan_lddmc_refs_pop(long amount) {
+    lddmc_refs_pop(amount);
+}
+
+void Sylvan_lddmc_refs_spawn(Task *t) {
+    lddmc_refs_spawn(t);
+}
+
+MDD Sylvan_lddmc_refs_sync(MDD dd) {
+    lddmc_refs_sync(dd);
+}
