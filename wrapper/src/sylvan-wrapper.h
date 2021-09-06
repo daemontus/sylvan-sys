@@ -381,4 +381,22 @@ void Sylvan_refs_spawn(Task *t);
 MTBDD Sylvan_mtbdd_refs_sync(MTBDD mtbdd);
 MTBDD Sylvan_refs_sync(MTBDD mtbdd);
 
+// lace.h wrapper:
+
+void Lace_set_verbosity(int level);
+void Lace_set_stacksize(size_t stacksize);
+size_t Lace_get_stacksize(void);
+unsigned int Lace_get_pu_count(void);
+void Lace_start(unsigned int n_workers, size_t dqsize);
+void Lace_suspend(void);
+void Lace_resume(void);
+void Lace_stop(void);
+void Lace_barrier(void);
+unsigned int Lace_workers(void);
+WorkerP *Lace_get_worker(void);
+Task *Lace_get_head(WorkerP *worker);
+void Lace_run_task(Task *task);
+void Lace_run_newframe(Task *task);
+void Lace_run_together(Task *task);
+
 #endif

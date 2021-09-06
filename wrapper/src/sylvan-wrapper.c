@@ -1370,3 +1370,67 @@ MTBDD Sylvan_mtbdd_refs_sync(MTBDD mtbdd) {
 MTBDD Sylvan_refs_sync(MTBDD mtbdd) {
     return sylvan_refs_sync(mtbdd);
 }
+
+/*
+    lace.h wrapper:
+ */
+
+void Lace_set_verbosity(int level) {
+    lace_set_verbosity(level);
+}
+
+void Lace_set_stacksize(size_t stacksize) {
+    lace_set_stacksize(stacksize);
+}
+
+size_t Lace_get_stacksize(void) {
+    return lace_get_stacksize();
+}
+
+unsigned int Lace_get_pu_count(void) {
+    return lace_get_pu_count();
+}
+
+void Lace_start(unsigned int n_workers, size_t dqsize) {
+    lace_start(n_workers, dqsize);
+}
+
+void Lace_suspend(void) {
+    lace_suspend();
+}
+
+void Lace_resume(void) {
+    lace_resume();
+}
+
+void Lace_stop(void) {
+    lace_stop();
+}
+
+void Lace_barrier(void) {
+    lace_barrier();
+}
+
+unsigned int Lace_workers(void) {
+    return lace_workers();
+}
+
+WorkerP *Lace_get_worker(void) {
+    return lace_get_worker();
+}
+
+Task *Lace_get_head(WorkerP *worker) {
+    return lace_get_head(worker);
+}
+
+void Lace_run_task(Task *task) {
+    lace_run_task(task);
+}
+
+void Lace_run_newframe(Task *task) {
+    lace_run_newframe(task);
+}
+
+void Lace_run_together(Task *task) {
+    lace_run_together(task);
+}
