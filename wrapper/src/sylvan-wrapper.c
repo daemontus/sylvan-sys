@@ -132,7 +132,7 @@ void Sylvan_mt_set_read_binary(uint32_t type, sylvan_mt_read_binary_cb read_bina
 }
 
 int Sylvan_mt_has_custom_hash(uint32_t type) {
-    sylvan_mt_has_custom_hash(type);
+    return sylvan_mt_has_custom_hash(type);
 }
 
 uint64_t Sylvan_mt_hash(uint32_t type, uint64_t value, uint64_t seed) {
@@ -628,7 +628,7 @@ void Sylvan_lddmc_refs_spawn(Task *t) {
 }
 
 MDD Sylvan_lddmc_refs_sync(MDD dd) {
-    lddmc_refs_sync(dd);
+    return lddmc_refs_sync(dd);
 }
 
 /*
@@ -1328,7 +1328,7 @@ void Sylvan_mtbdd_refs_pushptr(const MTBDD *ptr) {
 }
 
 void Sylvan_refs_pushptr(const MTBDD *ptr) {
-    sylvan_refs_pushptr(ptr);
+    bdd_refs_pushptr(ptr);
 }
 
 void Sylvan_mtbdd_refs_popptr(size_t amount) {
@@ -1336,7 +1336,7 @@ void Sylvan_mtbdd_refs_popptr(size_t amount) {
 }
 
 void Sylvan_refs_popptr(size_t amount) {
-    Sylvan_refs_popptr(amount);
+    bdd_refs_popptr(amount);
 }
 
 MTBDD Sylvan_mtbdd_refs_push(MTBDD mtbdd) {
@@ -1344,7 +1344,7 @@ MTBDD Sylvan_mtbdd_refs_push(MTBDD mtbdd) {
 }
 
 MTBDD Sylvan_refs_push(MTBDD mtbdd) {
-    return sylvan_refs_push(mtbdd);
+    return bdd_refs_push(mtbdd);
 }
 
 void Sylvan_mtbdd_refs_pop(long amount) {
@@ -1352,7 +1352,7 @@ void Sylvan_mtbdd_refs_pop(long amount) {
 }
 
 void Sylvan_refs_pop(long amount) {
-    sylvan_refs_pop(amount);
+    bdd_refs_pop(amount);
 }
 
 void Sylvan_mtbdd_refs_spawn(Task *t) {
@@ -1360,7 +1360,7 @@ void Sylvan_mtbdd_refs_spawn(Task *t) {
 }
 
 void Sylvan_refs_spawn(Task *t) {
-    sylvan_refs_spawn(t);
+    bdd_refs_spawn(t);
 }
 
 MTBDD Sylvan_mtbdd_refs_sync(MTBDD mtbdd) {
@@ -1368,7 +1368,7 @@ MTBDD Sylvan_mtbdd_refs_sync(MTBDD mtbdd) {
 }
 
 MTBDD Sylvan_refs_sync(MTBDD mtbdd) {
-    return sylvan_refs_sync(mtbdd);
+    return bdd_refs_sync(mtbdd);
 }
 
 /*

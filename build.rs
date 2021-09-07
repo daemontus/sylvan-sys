@@ -128,9 +128,13 @@ fn main() -> Result<(), String> {
         .build();
 
     let wrapper_path = PathBuf::from("wrapper");
-    Config::new(wrapper_path)
-        .define("SYLVAN", build_output.clone())
-        .build();
+    let mut cfg = Config::new(wrapper_path);
+    let is_debug = env::var_os("DEBUG").unwrap_or("true".into());
+    if is_debug == "true" {
+        cfg.cflag("-Werror");
+    }
+    cfg.define("SYLVAN", build_output.clone());
+    cfg.build();
 
     println!(
         "cargo:rustc-link-search=native={}",
