@@ -78,46 +78,6 @@ jobs:
         with:
           command: test
 
-  # Run tests on Windows.
-  test-windows:
-    #needs: check
-    name: Test Suite (windows)
-    runs-on: windows-latest
-    env:
-      RUSTFLAGS: "-D warnings"
-    defaults:
-      run:
-        shell: msys2 {0}
-    steps:
-      #- name: Install `gmp` library.
-      #  run: vcpkg install gmp
-      #- name: Integrate vcpkg.
-      #  run: vcpkg integrate install
-      #- name: Run vcpkg
-      #  uses: lukka/run-vcpkg@v4
-      #  with:
-      #    doNotCache: true
-      #    vcpkgArguments: 'gmp'
-      #    vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-      - uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: >-
-            base-devel
-            git
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-gmp
-            make
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: ${{ env.RUST_VERSION }}
-          override: true
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-
   # Checks code style.
   clippy:
     needs: check

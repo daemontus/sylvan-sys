@@ -123,16 +123,6 @@ fn main() -> Result<(), String> {
     run_command(&mut tar_command).map_err(|e| format!("Error decompressing CUDD: {:?}", e))?;
 
     let mut cfg = Config::new(sylvan_path);
-    if cfg!(target_os = "windows") {
-        /*cfg.define(
-            "CMAKE_TOOLCHAIN_FILE",
-            "./vcpkg/scripts/buildsystems/vcpkg.cmake",
-        );*/
-
-        cfg.cflag("-m64");
-        cfg.target("windows-gnu");  // should set -G MinGW Makefiles automatically
-        //cfg.generator("MinGW Makefiles");
-    }
     cfg.define("BUILD_STATIC_LIBS", "ON");
     cfg.define("BUILD_SHARED_LIBS", "OFF");
     let build_output = cfg.build();
