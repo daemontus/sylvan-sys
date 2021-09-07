@@ -122,14 +122,25 @@ fn main() -> Result<(), String> {
     ]);
     run_command(&mut tar_command).map_err(|e| format!("Error decompressing CUDD: {:?}", e))?;
 
-    let build_output = Config::new(sylvan_path)
-        .define("BUILD_STATIC_LIBS", "ON")
-        .define("BUILD_SHARED_LIBS", "OFF")
-        .build();
+    let mut cfg = Config::new(sylvan_path);
+    if cfg!(target_os = "windows") {
+        /*cfg.define(
+            "CMAKE_TOOLCHAIN_FILE",
+            "./vcpkg/scripts/buildsystems/vcpkg.cmake",
+        );*/
+
+        cfg.cflag("-m64");
+        cfg.target("windows-gnu");  // should set -G MinGW Makefiles automatically
+        //cfg.generator("MinGW Makefiles");
+    }
+    cfg.define("BUILD_STATIC_LIBS", "ON");
+    cfg.define("BUILD_SHARED_LIBS", "OFF");
+    let build_output = cfg.build();
 
     let wrapper_path = PathBuf::from("wrapper");
     let mut cfg = Config::new(wrapper_path);
-    let is_debug = env::var_os("DEBUG").unwrap_or("true".into());
+
+    let is_debug = env::var_os("DEBUG").unwrap_or_else(|| "true".into());
     if is_debug == "true" {
         cfg.cflag("-Werror");
     }
