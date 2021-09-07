@@ -18,6 +18,9 @@ pub mod mtbdd;
 /// Wraps the `sylvan_stats.h` declarations.
 pub mod stats;
 
+#[cfg(test)]
+mod test;
+
 pub type MDD = u64;
 pub type MTBDD = u64;
 pub type BDDVAR = u32;
