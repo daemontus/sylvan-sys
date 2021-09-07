@@ -1,10 +1,16 @@
 [package]
 name = "sylvan-sys"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2018"
 authors = ["Samuel Pastva <sam.pastva@gmail.com>"]
 build = "build.rs"
 description = "Bindings for the Sylvan parallel decision diagrams library."
+homepage = "https://github.com/daemontus/sylvan-sys"
+repository = "https://github.com/daemontus/sylvan-sys"
+readme = "README.md"
+keywords = ["bdd", "symbolic", "parallel"]
+categories = ["data-structures", "mathematics", "science"]
+license = "Apache-2.0"
 
 [dependencies]
 libc = "0.2"
