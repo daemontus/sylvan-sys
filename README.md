@@ -1,6 +1,6 @@
 [![Crates.io](https://img.shields.io/crates/v/sylvan-sys?style=flat-square)](https://crates.io/crates/sylvan-sys)
 [![Api Docs](https://img.shields.io/badge/docs-api-yellowgreen?style=flat-square)](https://docs.rs/sylvan-sys/)
-[![Continuous integration](https://img.shields.io/github/workflow/status/daemontus/sylvan-sys/build?style=flat-square)](https://github.com/daemontus/sylvan-sys/actions?query=workflow%3Abuild)
+[![Continuous integration](https://img.shields.io/github/actions/workflow/status/daemontus/sylvan-sys/build.yml?branch=master&style=flat-square)](https://github.com/daemontus/sylvan-sys/actions?query=workflow%3Abuild)
 
 # Rust Bindings for the Sylvan library
 
