@@ -4,7 +4,8 @@
 
 # Rust Bindings for the Sylvan library
 
-This crate provides unsafe Rust bindings for the parallel multi-terminal binary decision diagram library Sylvan. At the moment, the bindings are based on version `1.6.1` available [on Github](https://github.com/trolando/sylvan). The crate compiles on Linux and MacOS, and if you can build `sylvan` with Visual Studio, it should work on Windows as well (the problem is mostly correctly linking the `gmp` library).
+This crate provides unsafe Rust bindings for the parallel multi-terminal 
+binary decision diagram library Sylvan. At the moment, the bindings are based on version `1.7.1` available [on Github](https://github.com/trolando/sylvan). The crate compiles on Linux and MacOS, and if you can build `sylvan` with Visual Studio, it should work on Windows as well (the problem is mostly correctly linking the `gmp` library).
 
 > Keep in mind that you will need `cmake` and `gmp` (arbitrary precision numbers) to build Sylvan. Hopefully `gmp` will be soon optional, but for now it is necessary.
 
@@ -43,6 +44,11 @@ unsafe fn main() {
 
 A slightly more involved example is also available in the `test.rs` module.
 
-**Completeness:** Most of the API should be fully reproduced here (including stuff like functions with callbacks). Some minor aspects (like the `sylvan_stats` struct or more advanced lace functionality) are missing, but if you need them, you can create an issues, and they can be added later.
+**Completeness:** Most of the API should be fully reproduced here (including 
+stuff like functions with callbacks). Some minor aspects (like the 
+`sylvan_stats` struct or more advanced lace functionality) are missing, but 
+if you need them, you can create an issues, and they can be added later. 
+**Since `1.7.0`, Sylvan also includes an implementation of ZDDs. For now, 
+this is not included in this wrapper, but feel free to make a PR :)
 
 **Correctness:** Unfortunately, Sylvan cannot be directly processed using `bindgen`, so the API was reproduced using a semi-automated method with a manual validation step (bunch of regexes that a human makes sure didn't break anything ;)). As such, it is possible that there are some minor problems that need to be sorted out. Please file an issue if you see any unexpected behaviour or segfaults.

@@ -16,7 +16,7 @@ license = "Apache-2.0"
 libc = "0.2"
 
 [build-dependencies]
-cmake = "0.1.45"
+cmake = "0.1.49"
 
 [features]
 default = ["build_sylvan"]
