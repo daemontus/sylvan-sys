@@ -3,7 +3,7 @@ on: [push]
 env:
   # A fixed version used for testing, so that the builds don't
   # spontaneously break after a few years.
-  RUST_VERSION: "1.53.0"
+  RUST_VERSION: "1.66.0"
 jobs:
   # Checks syntax formatting.
   fmt:
